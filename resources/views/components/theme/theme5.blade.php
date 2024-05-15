@@ -54,10 +54,10 @@
                                                     <h5 class="d-flex justify-content-between" style="margin: auto 0">
                                                         <span>{{ $menu->name }}</span>
                                                         @if ($menu->type == 'veg')
-                                                            <img width="10%" src="{{ asset('/veg.png') }}"
+                                                            <img width="10%" src="{{ asset('public/veg.png') }}"
                                                                 alt="hi">
                                                         @else
-                                                            <img width="10%" src="{{ asset('/nonveg.png') }}"
+                                                            <img width="10%" src="{{ asset('public/nonveg.png') }}"
                                                                 alt="">
                                                         @endif
                                                     </h5>
