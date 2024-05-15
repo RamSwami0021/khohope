@@ -168,7 +168,7 @@
             </div>
             <div class="d-flex justify-content-around wow fadeInUp" data-wow-delay="0.1s" style="padding-bottom: 10px">
                 <div class="icon">
-                    <img width="25px" src="{{ asset('assets/fonts/magnifying-glass-solid.svg') }}" class="img-fluid"
+                    <img width="25px" src="{{ asset('/public/assets/fonts/magnifying-glass-solid.svg') }}" class="img-fluid"
                         alt="">
                     <input type="text" id="searchInput" onclick="toggleDropdown()" placeholder="">
                 </div>
