@@ -132,7 +132,7 @@
                                         <input class="form-control" name="image" type="file">
                                     </div>
                                     <div class="mb-4" id="imagePreviewContainer">
-                                        <img width="10%" src="{{ asset($menu->image_url) }}" class="img-fluid"
+                                        <img width="10%" src="{{ asset('public/'.$menu->image_url) }}" class="img-fluid"
                                             alt="Image Preview">
                                     </div>
                                 </div> <!-- col.// -->
