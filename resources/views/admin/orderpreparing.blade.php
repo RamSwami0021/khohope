@@ -41,7 +41,7 @@
                                                 <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
                                                     <a class="itemside" href="#">
                                                         <div class="left">
-                                                            <img src="{{ asset('public/'.$order->menu->image_url) }}"
+                                                            <img src="{{ asset($order->menu->image_url) }}"
                                                                 class="img-sm img-thumbnail" alt="Item">
                                                         </div>
                                                         <div class="info">

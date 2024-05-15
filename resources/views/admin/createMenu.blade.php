@@ -17,6 +17,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-4">
+                        @if(empty($lest))
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
@@ -47,6 +48,16 @@
                                                 <option value="{{ $item->id }}"> {{ $item->name }} </option>
                                             @empty
                                                 <option disabled value="#"> No Category Added </option>
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Super Category</label>
+                                        <select class="form-select" name="supcategories[]" multiple>
+                                            @forelse($suplist as $item)
+                                                <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                            @empty
+                                                <option disabled value="#"> No Super Category Added </option>
                                             @endforelse
                                         </select>
                                     </div>
@@ -96,6 +107,11 @@
                                 </div> <!-- col.// -->
                             </div> <!-- .row end// -->
                         </div>
+                        @else
+                        <div class="card-body">
+                            <div class="row"><p>No category added. Please click <a href="{{ route('category.create') }}">here</a> to add a category.</p></div>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

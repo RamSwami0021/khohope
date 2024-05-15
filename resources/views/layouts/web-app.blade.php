@@ -23,17 +23,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('public/web-assets/lib/animate/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/web-assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/publicweb-assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/web-assets/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('public/web-assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{ asset('public/web-assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="sweet-modal/dist/min/jquery.sweet-modal.min.css" />
-<script src="sweet-modal/dist/min/jquery.sweet-modal.min.js"></script>
+    <script src="sweet-modal/dist/min/jquery.sweet-modal.min.js"></script>
     <style>
         .fade-carousel .carousel-inner .carousel-item {
             opacity: 0;
@@ -71,9 +71,8 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="#" class="navbar-brand p-0">
-                        <h1 class="text-primary m-0"><i
-                            class="fa fa-utensils me-3"></i>{{ $user->name ?? 'Khojo' }}
-                        </h1>
+                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>{{ $user->name ?? 'Khojo' }}
+                    </h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -82,14 +81,34 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="{{ asset('/' . ($user->username ?? '#')) }}" class="nav-item nav-link active">Home</a>
-                        <a href="" class="nav-item nav-link">About</a>
-                        <a href="#" class="nav-item nav-link">Contact</a>
+                        <a href="{{asset('/about/data')}}" class="nav-item nav-link">About</a>
+                        <a href="{{asset('/contact/data')}}" class="nav-item nav-link">Contact</a>
                     </div>
-                        <a href="{{ asset('menu/' . ($user->username ?? '#')) }}"
-                            class="btn btn-primary py-2 px-4">Menu</a>
-                            @if(session('customer'))
-                            <a href="{{ asset('cart/' . ($user->username ?? '#')) }}" class="btn btn-primary py-2 px-4" style="margin-left: 10px">Cart</a>
-                        @endif
+                    <div class="dropdown">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Menu
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            @if (isset($SupCategorie) && count($SupCategorie) > 0)
+                                @foreach ($SupCategorie as $item)
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ asset('menu/' . ($user->username ?? '#')) . '/' . $item->id }}">{{ $item->name }}</a>
+                                    </li>
+                                @endforeach
+                            @else
+                                <li>
+                                    <a class="dropdown-item" href="#">Not Available</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+
+                    @if (session('customer'))
+                        <a href="{{ asset('cart/' . ($user->username ?? '#')) }}" class="btn btn-primary py-2 px-4"
+                            style="margin-left: 10px">Cart</a>
+                    @endif
 
                 </div>
             </nav>
@@ -106,8 +125,7 @@
                         <div class="col-md-12 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Khojo Right Now </a>, All Rights Reserved.
                             Designed By <a class="border-bottom" href="#">Ram</a><br><br>
-                            Developed By <a class="border-bottom" href="https://khojorightnow.com"
-                                target="_blank">Khojo
+                            Developed By <a class="border-bottom" href="https://khojorightnow.com" target="_blank">Khojo
                                 Right Now</a>
                         </div>
                     </div>
@@ -124,31 +142,31 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('public/web-assets/lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/counterup/counterup.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/tempusdominus/js/moment.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
-    <script src="{{ asset('public/web-assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset('public/web-assets/js/main.js') }}"></script>
+    <script src="{{ asset('/web-assets/js/main.js') }}"></script>
 
     {{-- Sweetalert --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if(session('success'))
-    <script>
-        Swal.fire({
-            title: "Success!",
-            text: "{{ session('success') }}",
-            icon: "success",
-            timer: 3000,
-            showConfirmButton: true
-        });
-    </script>
-@endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: "Success!",
+                text: "{{ session('success') }}",
+                icon: "success",
+                timer: 3000,
+                showConfirmButton: true
+            });
+        </script>
+    @endif
 </body>
 
 </html>

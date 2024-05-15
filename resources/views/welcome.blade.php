@@ -9,20 +9,28 @@
                     <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam
                         dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
                         stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <a href="{{ asset('menu/' . ($user->username ?? '#')) }}" class="btn btn-primary py-2 px-4">Menu</a>
+                    @if ($SupCategorie->isNotEmpty())
+                        @foreach ($SupCategorie as $item)
+                            <a href="{{ asset('menu/' . ($user->username ?? '#')) . '/' . $item->id }}"
+                                class="btn btn-primary py-2 px-4">{{ $item->name }}</a>
+                        @endforeach
+                    @else
+                        <a href="#" class="btn btn-primary py-2 px-4">Not Available</a>
+                    @endif
+
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                     <!-- <img class="img-fluid" src="img/hero.png" alt=""> -->
                     <div id="carouselExample" class="carousel slide fade-carousel" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{ asset('public/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
+                                <img src="{{ asset('/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
                             </div>
                             <div class="carousel-item ">
-                                <img src="{{ asset('public/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
+                                <img src="{{ asset('/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
                             </div>
                             <div class="carousel-item ">
-                                <img src="{{ asset('public/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
+                                <img src="{{ asset('/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"

@@ -12,9 +12,9 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    {{-- <link rel="shortcut icon" type="image/x-icon" href="public/assets/imgs/theme/favicon.svg"> --}}
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="/assets/imgs/theme/favicon.svg"> --}}
     <!-- Template CSS -->
-    <link href="{{asset('public/assets/css/main.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/assets/css/main.css')}}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <header class="main-header style-2 navbar">
             <div class="col-brand">
                 <a href="index.html" class="brand-wrap">
-                    <!-- <img src="public/assets/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard"> -->
+                    <!-- <img src="/assets/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard"> -->
                     <h4>Khojo</h4>
                 </a>
             </div>
@@ -76,7 +76,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <label for="mobile_number" class="col-md-12 col-form-label">{{ __('Mobile Number') }}</label>
 
@@ -90,7 +90,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <label for="password" class="col-md-12 col-form-label">{{ __('Password') }}</label>
 
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                     </form>
-                    <p class="text-center mb-2">Already have an account? <a href="{{route('login')}}">Sign in now</a></p>
+                    <p class="text-center mb-2">Already have an account? <a href="{{asset('admin/login')}}">Sign in now</a></p>
                 </div>
             </div>
         </section>
@@ -134,11 +134,11 @@
             <p class="font-xs mb-30">All rights reserved</p>
         </footer>
     </main>
-    <script src="{{asset('public/assets/js/vendors/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('public/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('public/assets/js/vendors/jquery.fullscreen.min.js')}}"></script>
+    <script src="{{asset('/assets/js/vendors/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/assets/js/vendors/jquery.fullscreen.min.js')}}"></script>
     <!-- Main Script -->
-    <script src="{{asset('public/assets/js/main.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/assets/js/main.js')}}" type="text/javascript"></script>
 </body>
 
 </html>

@@ -40,8 +40,8 @@
 
         @media only screen and (max-width: 768px) {
             #searchInput {
-                width:130%;
-            margin-left:-14%;
+                width: 130%;
+                margin-left: -14%;
             }
         }
 
@@ -91,7 +91,7 @@
         @media only screen and (max-width: 768px) {
             .fixedButton {
                 width: 80%;
-                margin-left:-28%;
+                margin-left: -28%;
             }
         }
 
@@ -166,9 +166,9 @@
                 <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
                 <h1 class="mb-5">Most Popular Items</h1>
             </div>
-<div class="d-flex justify-content-around wow fadeInUp" data-wow-delay="0.1s" style="padding-bottom: 10px">
+            <div class="d-flex justify-content-around wow fadeInUp" data-wow-delay="0.1s" style="padding-bottom: 10px">
                 <div class="icon">
-                    <img width="25px" src="{{ asset('public/assets/fonts/magnifying-glass-solid.svg') }}" class="img-fluid"
+                    <img width="25px" src="{{ asset('assets/fonts/magnifying-glass-solid.svg') }}" class="img-fluid"
                         alt="">
                     <input type="text" id="searchInput" onclick="toggleDropdown()" placeholder="">
                 </div>
@@ -210,16 +210,12 @@
 
             <div class="row py-5 wow fadeInUp">
                 <div class="col-md-6">
-                    {{-- <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Veg Only</label>
-                    </div> --}}
-                    <form id="filterForm" action="{{ url('menu/' . $user->username ) }}" method="POST">
+                    <form id="filterForm" action="{{ url('menu/' . $user->username . '/' . $id) }}" method="POST">
                         @csrf <!-- Add CSRF token for Laravel -->
                         <input type="hidden" name="username" value="{{ $user->username }}">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="vegOnly" @if($isChecked === 'on') checked @endif>
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                name="vegOnly" @if ($isChecked === 'on') checked @endif>
                             <label class="form-check-label" for="flexSwitchCheckDefault">Veg Only</label>
                         </div>
                     </form>
@@ -261,7 +257,7 @@
                 });
             </script> --}}
 
-            @forelse($categories as $category)
+            {{-- @forelse($categories as $category)
                 @php
                     $themeComponent = 'components.theme.theme' . $user->theme_id;
                 @endphp
@@ -271,7 +267,19 @@
 
             @empty
                 <p>No Menu Added</p>
+            @endforelse --}}
+            @forelse($categories as $category)
+                @if (!$category->menus->isEmpty())
+                    @php
+                        $themeComponent = 'components.theme.theme' . $user->theme_id;
+                    @endphp
+                    @component($themeComponent, ['category' => $category, 'user' => $user])
+                    @endcomponent
+                @endif
+            @empty
+                <p>No Menu Added</p>
             @endforelse
+
         </div>
     </div>
 
@@ -310,7 +318,7 @@
         function handleInput(event) {
             const inputValue = event.target.value.toLowerCase();
             const categories = <?php echo json_encode($categories); ?>;
-            
+
             const matchingMenuItems = [];
 
             categories.forEach(category => {
@@ -338,7 +346,7 @@
                     .catId);
                 menuNameParagraph.addEventListener('click', function() {
                     redirectMenuAndScrollSearch(item.categoryId);
-                    
+
                 });
                 document.getElementById('dropdownContent').appendChild(menuNameParagraph);
                 const hrLine = document.createElement('hr');
@@ -353,7 +361,7 @@
     </script>
     <script>
         function redirectMenuAndScroll(categoryId) {
-            
+
             var modal = document.getElementById('catModal');
             var modalInstance = bootstrap.Modal.getInstance(modal);
             modalInstance.hide();
@@ -384,9 +392,9 @@
             dropdown.style.display = "none";
             const searchInput = document.getElementById('searchInput');
 
-    const inputValue = searchInput.value;
+            const inputValue = searchInput.value;
 
-    searchInput.value = "";
+            searchInput.value = "";
         }
     </script>
     <script>

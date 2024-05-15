@@ -1,8 +1,29 @@
 <div class="theme">
     <style>
-        .accordion-button{
+        .accordion-button {
             color: Black !important;
-            background-color: #FEA116;
+            font-size: 20px;
+            font-weight: 900;
+            background-color: #fff !important;
+        }
+        h6{
+            font-size: 18px !important;
+        }
+
+        .btn-value{
+            padding: 0;
+        }
+        .btn-submit{
+            width: 30%;
+            padding: 10px 7px;
+        }
+
+        .accordion-collapse {
+            background-color: #fff;
+            font-size: 18px;
+        }
+        .quantity-box{
+            padding: 1px 10px !important;
         }
     </style>
 
@@ -26,10 +47,10 @@
                                     <div class="accordion-body">
                                         @foreach ($category->menus as $menu)
                                             <div class="d-flex align-items-center py-3 border-bottom">
-                                                <img class="flex-shrink-0 img-fluid rounded"
+                                                {{-- <img class="flex-shrink-0 img-fluid rounded"
                                                     src="{{ asset('/' . $menu->image_url) }}" alt=""
-                                                    style="width: 80px;">
-                                                <div class="w-100 d-flex flex-column text-start ps-4">
+                                                    style="width: 80px;"> --}}
+                                                <div class="w-100 d-flex flex-column text-start">
                                                     <h5 class="d-flex justify-content-between" style="margin: auto 0">
                                                         <span>{{ $menu->name }}</span>
                                                         @if ($menu->type == 'veg')
@@ -41,62 +62,62 @@
                                                         @endif
                                                     </h5>
                                                     <h6 class="d-flex justify-content-between">
-                                                        <span class="text-primary">Rs {{ $menu->price }}</span>
+                                                        <span class="text-primary">₹{{ $menu->price }}</span>
                                                     </h6>
                                                     <div class="d-flex justify-content-between pb-2">
                                                         <small class="fst-italic">{{ $menu->description }}</small>
                                                     </div>
                                                     <div>
-                                                        <form class="d-flex justify-content-between" method="POST"
+                                                        {{-- <form class="d-flex justify-content-between" method="POST"
                                                             action="{{ route('addToCart') }}">
                                                             @csrf
-                                                            <input type="hidden" name="menu_id"
-                                                                value="{{ $menu->id }}">
-                                                            <input type="hidden" name="customer_id"
-                                                                value="{{ session('customer') ? session('customer')->id : '' }}">
-                                                            <input type="hidden" name="user_id"
-                                                                value="{{ $user->id }}">
-                                                            <input type="hidden" name="price"
-                                                                value="{{ $menu->price }}">
+                                                            <div style="width: 35%">
+                                                                <input type="hidden" name="menu_id"
+                                                                    value="{{ $menu->id }}">
+                                                                <input type="hidden" name="customer_id"
+                                                                    value="{{ session('customer') ? session('customer')->id : '' }}">
+                                                                <input type="hidden" name="user_id"
+                                                                    value="{{ $user->id }}">
+                                                                <input type="hidden" name="price"
+                                                                    value="{{ $menu->price }}">
 
-                                                            <div class="d-flex quantity-box">
-                                                                <button class="btn btn-link px-2"
-                                                                    onclick="event.preventDefault(); changeQuantity({{ $menu->id }}, -1)">
-                                                                    <i class="fas fa-minus"></i>
-                                                                </button>
-                                                                <input id="quantityInput{{ $menu->id }}"
-                                                                    min="1" placeholder="1" value="1"
-                                                                    name="quantity" type="number"
-                                                                    class="form-control form-control-sm quantity"
-                                                                    style="width: 25%; height:10%" >
-                                                                <button class="btn btn-link px-2"
-                                                                    onclick="event.preventDefault(); changeQuantity({{ $menu->id }}, 1)">
-                                                                    <i class="fas fa-plus"></i>
-                                                                </button>
-                                                                <style>
+                                                                <div class="d-flex quantity-box">
+                                                                    <button class="btn btn-link btn-value"
+                                                                        onclick="event.preventDefault(); changeQuantity({{ $menu->id }}, -1)">
+                                                                        <i class="fas fa-minus"></i>
+                                                                    </button>
+                                                                    <input id="quantityInput{{ $menu->id }}"
+                                                                        min="1" placeholder="1" value="1"
+                                                                        name="quantity" type="number"
+                                                                        class="form-control form-control-sm quantity"
+                                                                        style="width: 25%; height:10%">
+                                                                    <button class="btn btn-link btn-value"
+                                                                        onclick="event.preventDefault(); changeQuantity({{ $menu->id }}, 1)">
+                                                                        <i class="fas fa-plus"></i>
+                                                                    </button>
+                                                                    <style>
 
-                                                                </style>
+                                                                    </style>
+                                                                </div>
                                                             </div>
                                                             <button type="submit"
-                                                                class="btn-sm btn-primary text-white">Add to
+                                                                class="btn-sm btn-primary text-white btn-submit">Add to
                                                                 Order</button>
                                                         </form>
 
 
                                                         <script>
                                                             function changeQuantity(menuId, step) {
-                                                                        const quantityInput = document.getElementById('quantityInput' + menuId);
-                                                                        quantityInput.removeAttribute('disabled');
-                                                                        let quantity = parseInt(quantityInput.value) || 1;
-                                                                        quantity += step;
-                                                                        if (quantity < 0) {
-                                                                            quantity = 0;
-                                                                        }
-                                                                        quantityInput.value = quantity;
-                                                                    }
-                                                        </script>
-
-
+                                                                const quantityInput = document.getElementById('quantityInput' + menuId);
+                                                                quantityInput.removeAttribute('disabled');
+                                                                let quantity = parseInt(quantityInput.value) || 1;
+                                                                quantity += step;
+                                                                if (quantity < 0) {
+                                                                    quantity = 0;
+                                                                }
+                                                                quantityInput.value = quantity;
+                                                            }
+                                                        </script> --}}
 
                                                     </div>
                                                 </div>

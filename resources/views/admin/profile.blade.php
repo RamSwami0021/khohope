@@ -20,30 +20,21 @@
                         <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h6>Current Password</h6>
+                                        <h6>Current Password*</h6>
                                     </div>
                                     <div class="col-md-9">
                                         <div class="mb-4">
                                             <input type="password" placeholder="Your Current Password"
-                                                name="current_password" class="form-control">
+                                                name="current_password" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <h6>New Password</h6>
+                                        <h6>New Password*</h6>
                                     </div>
                                     <div class="col-md-9">
                                         <div class="mb-4">
                                             <input type="password" placeholder="Your New Password" name="new_password"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <h6>Confirm Password</h6>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="mb-4">
-                                            <input type="password" placeholder="Your Confirm Password"
-                                                name="confirm_password" class="form-control">
+                                                class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

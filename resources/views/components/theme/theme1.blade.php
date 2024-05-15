@@ -21,16 +21,16 @@
                                         @foreach ($category->menus as $menu)
                                             <div class="d-flex align-items-center py-3 border-bottom">
                                                 <img class="flex-shrink-0 img-fluid rounded"
-                                                    src="{{ asset('public/' . $menu->image_url) }}" alt=""
+                                                    src="{{ asset('/' . $menu->image_url) }}" alt=""
                                                     style="width: 80px;">
                                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                                     <h5 class="d-flex justify-content-between" style="margin: auto 0">
                                                         <span>{{ $menu->name }}</span>
                                                         @if ($menu->type == 'veg')
-                                                            <img width="10%" src="{{asset('public/veg.png') }}"
+                                                            <img width="10%" src="{{ asset('/veg.png') }}"
                                                                 alt="hi">
                                                         @else
-                                                            <img width="10%" src="{{asset('public/nonveg.png') }}"
+                                                            <img width="10%" src="{{ asset('/nonveg.png') }}"
                                                                 alt="">
                                                         @endif
                                                     </h5>
@@ -67,18 +67,8 @@
                                                                     onclick="event.preventDefault(); changeQuantity({{ $menu->id }}, 1)">
                                                                     <i class="fas fa-plus"></i>
                                                                 </button>
-                                                                <style>
-
-                                                                </style>
-                                                            </div>
-                                                            <button type="submit"
-                                                                class="btn-sm btn-primary text-white">Add to
-                                                                Order</button>
-                                                        </form>
-
-
-                                                        <script>
-                                                            function changeQuantity(menuId, step) {
+                                                                <script>
+                                                                    function changeQuantity(menuId, step) {
                                                                         const quantityInput = document.getElementById('quantityInput' + menuId);
                                                                         quantityInput.removeAttribute('disabled');
                                                                         let quantity = parseInt(quantityInput.value) || 1;
@@ -88,7 +78,12 @@
                                                                         }
                                                                         quantityInput.value = quantity;
                                                                     }
-                                                        </script>
+                                                                </script>
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn-sm btn-primary text-white">Add to
+                                                                Order</button>
+                                                        </form>
 
 
 

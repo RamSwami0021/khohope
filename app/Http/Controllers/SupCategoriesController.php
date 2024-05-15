@@ -4,25 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Menu_Categories;
 use App\Models\SupCategorie;
 use Illuminate\Support\Facades\Log;
 
-
-class Menu_CategoriesController extends Controller
+class SupCategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $userId = Auth::id();
-        $hasSupCategories = SupCategorie::where('user_id', $userId)->exists();
-        if (!$hasSupCategories) {
-            return view('admin/createSupCategory');
-        }
-        $list = Menu_Categories::where('user_id', $userId)->orderBy('name')->get();
-        return view('admin/listCategory', compact('list'));
+        $list = SupCategorie::where('user_id', $userId)->orderBy('name')->get();
+        return view('admin/listSupCategory', compact('list'));
     }
 
     /**
@@ -30,7 +21,7 @@ class Menu_CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin/createCategory');
+        return view('admin/createSupCategory');
     }
 
     /**
@@ -39,7 +30,7 @@ class Menu_CategoriesController extends Controller
     public function store(Request $request)
     {
         $userId = Auth::id();
-        $Categories = new Menu_Categories();
+        $Categories = new SupCategorie();
         $Categories->name = $request->name;
         if (!empty($request->status)) {
             $Categories->status = $request->status;
@@ -49,14 +40,14 @@ class Menu_CategoriesController extends Controller
         $Categories->user_id = $userId;
         $Categories->save();
 
-        return redirect()->back()->with('success', 'Menu Category add successfully.');
+        return redirect()->back()->with('success', 'Super Category add successfully.');
     }
     public function updateStatus(Request $request)
     {
         $itemId = $request->input('itemId');
         $status = $request->input('status');
 
-        $item = Menu_Categories::find($itemId);
+        $item = SupCategorie::find($itemId);
         if (!$item) {
             return response()->json(['error' => 'Item not found'], 404);
         }
@@ -99,7 +90,7 @@ class Menu_CategoriesController extends Controller
     public function destroy(string $id)
     {
 
-        $item = Menu_Categories::find($id);
+        $item = SupCategorie::find($id);
         $item->delete();
         return redirect()->back()->with('success', 'Menu Category delete successfully.');
     }

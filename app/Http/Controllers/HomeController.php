@@ -52,24 +52,16 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
         $orders = Order::whereIn('status', ['placed', 'preparing', 'serve', 'complete'])->where('user_id',$userId)->get();
-
-
         $placedCount = $orders->where('status', 'placed')->count();
         $preparingCount = $orders->where('status', 'preparing')->count();
         $serveCount = $orders->where('status', 'serve')->count();
         $completeCount = $orders->where('status', 'complete')->count();
-
-
         $currentDate = Carbon::now();
         $startTime = $currentDate->copy()->startOfDay();
         $endTime = $currentDate->copy()->endOfDay();
         $todayOrders = Order_History::whereBetween('created_at', [$startTime, $endTime])->where('user_id',$userId)->count();
-
         $menu = Menu_Items::where('user_id', $userId)->count();
         $categories = Menu_Categories::where('user_id', $userId)->count();
-
-
-
         return view('home', compact('placedCount','preparingCount','serveCount','completeCount','todayOrders','menu','categories'));
     }
 

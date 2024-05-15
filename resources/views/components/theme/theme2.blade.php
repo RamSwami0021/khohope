@@ -27,16 +27,16 @@
                                         @foreach ($category->menus as $menu)
                                             <div class="d-flex align-items-center py-3 border-bottom">
                                                 <img class="flex-shrink-0 img-fluid rounded"
-                                                    src="{{ asset('public/' . $menu->image_url) }}" alt=""
+                                                    src="{{ asset('/' . $menu->image_url) }}" alt=""
                                                     style="width: 80px;">
                                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                                     <h5 class="d-flex justify-content-between" style="margin: auto 0">
                                                         <span>{{ $menu->name }}</span>
                                                         @if ($menu->type == 'veg')
-                                                            <img width="10%" src="{{asset('public/veg.png') }}"
+                                                            <img width="10%" src="{{ asset('/veg.png') }}"
                                                                 alt="hi">
                                                         @else
-                                                            <img width="10%" src="{{asset('public/nonveg.png') }}"
+                                                            <img width="10%" src="{{ asset('/nonveg.png') }}"
                                                                 alt="">
                                                         @endif
                                                     </h5>

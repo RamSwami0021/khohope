@@ -1,0 +1,25 @@
+.quantity {
+    background: transparent !important;
+    border: none;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    color: #FEA116;
+    padding: 0;
+}
+
+.quantity:focus {
+    border: none
+}
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+.quantity-box {
+    border: 1px solid #FEA116;
+
+    border-radius: 25px;
+    padding: 1px 14px;
+}

@@ -10,11 +10,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Menu_CategoriesController;
 use App\Http\Controllers\Menu_ItemsController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupCategoriesController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\WebMenuController;
-use App\Http\Controllers\ProfileController;
 use App\Models\Menu_Categories;
+use App\Models\SupCategorie;
 use App\Models\User;
 
 /*
@@ -49,14 +51,15 @@ Route::get('/{username?}', function ($username = null) {
         return view('welcome');
     } else {
         $user = User::where('username', $username)->first();
-        return view('welcome', compact('user'));
+        $SupCategorie = SupCategorie::where('user_id', $user->id)->where('status','on')->get();
+        return view('welcome', compact('user','SupCategorie'));
     }
 });
 
 
 
-Route::get('/menu/{username}', [WebMenuController::class, 'index'])->name('menu');
-Route::post('/menu/{username}', [WebMenuController::class, 'index'])->name('updateFilter');
+Route::get('/menu/{username}/{id}', [WebMenuController::class, 'index'])->name('menu');
+Route::post('/menu/{username}/{id}', [WebMenuController::class, 'index'])->name('updateFilter');
 Route::post('addToCart', [WebMenuController::class, 'store'])->name('addToCart');
 Route::post('customer', [WebMenuController::class, 'customer'])->name('customer');
 Route::get('/cart/{username}', [CartController::class, 'index'])->name('cart');
@@ -65,6 +68,13 @@ Route::post('/placeOrder', [CartController::class, 'placeOrder'])->name('placeOr
 Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 Route::post('/updateQuantity', [CartController::class, 'updateOrder'])->name('updateQuantity');
 
+Route::get('/contact/data', function () {
+    return view('contact');
+});
+
+Route::get('/about/data', function () {
+    return view('about');
+});
 
 
 
@@ -92,7 +102,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::delete('restaurant/menu/destroy/{id}', [Menu_ItemsController::class, 'destroy'])->name('restaurant.menu.destroy');
     Route::post('/restaurants/updateStatusMenu', [Menu_ItemsController::class, 'updateStatus'])->name('updateStatusMenu');
     Route::get('/menuedit/{id}', [Menu_ItemsController::class, 'edit'])->name('menuedit');
-    Route::post('/menu/update/{id}', [Menu_ItemsController::class, 'update'])->name('restaurant.menu.update');
+    Route::post('/menu-update/{id}', [Menu_ItemsController::class, 'update'])->name('restaurant.menu.update');
 
 
 
@@ -101,6 +111,12 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/restaurants/category/list', [Menu_CategoriesController::class, 'index'])->name('category.list');
     Route::delete('/restaurants/category/destroy/{id}', [Menu_CategoriesController::class, 'destroy'])->name('category.destroy');
     Route::post('/restaurants/updateStatus', [Menu_CategoriesController::class, 'updateStatus'])->name('updateStatus');
+
+    Route::get('/restaurants/supcategory/add', [SupCategoriesController::class, 'create'])->name('supcategory.create');
+    Route::post('/restaurants/supcategory/store', [SupCategoriesController::class, 'store'])->name('supcategory.store');
+    Route::get('/restaurants/supcategory/list', [SupCategoriesController::class, 'index'])->name('supcategory.list');
+    Route::delete('/restaurants/supcategory/destroy/{id}', [SupCategoriesController::class, 'destroy'])->name('supcategory.destroy');
+    Route::post('/restaurants/supcategory/updateStatus', [SupCategoriesController::class, 'updateStatus'])->name('supcategory.updateStatus');
 
     Route::get('/restaurants/order', [OrderController::class, 'order'])->name('order');
     Route::get('/order/preparing', [OrderController::class, 'preparing'])->name('order.preparing');
@@ -121,7 +137,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/restaurants/theme', [ThemeController::class, 'index'])->name('restaurants.theme');
     Route::get('/restaurants/theme/{id}', [ThemeController::class, 'update'])->name('theme.active');
-    
+
     Route::get('/restaurants/profile', [ProfileController::class, 'index'])->name('restaurants.profile');
     Route::post('/restaurants/profile', [ProfileController::class, 'store'])->name('restaurants.profile');
 

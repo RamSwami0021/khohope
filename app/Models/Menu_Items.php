@@ -13,6 +13,7 @@ class Menu_Items extends Model
         'user_id',
 
         'categorie_id',
+        'supcategorie_id',
 
         'name',
 

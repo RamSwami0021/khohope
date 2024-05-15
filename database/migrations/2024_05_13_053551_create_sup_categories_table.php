@@ -11,21 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu__items', function (Blueprint $table) {
+        Schema::create('sup_categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('categorie_id');
-            $table->string('supcategorie_id');
             $table->string('name');
-            $table->string('description');
-            $table->string('price');
-            $table->string('image_url')->nullable();
             $table->string('status')->nullable();
-            $table->string('type');
             $table->timestamps();
 
-            $table->foreign('categorie_id')->references('id')->on('menu__categories');
-            $table->foreign('user_id')->references('id')->on('Users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menu__items');
+        Schema::dropIfExists('sup_categories');
     }
 };

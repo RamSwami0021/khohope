@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Menu_Items;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\SupCategorie;
 
 class CartController extends Controller
 {
@@ -50,12 +51,15 @@ class CartController extends Controller
             $totalPlaced += $order->quantity * $order->price;
         }
 
+        $SupCategorie = SupCategorie::where('user_id', $user->id)->where('status','on')->get();
+
         return view('cart', [
             'user' => $user,
             'orderCartList' => $orderCartList,
             'orderPlacedList' => $orderPlacedList,
             'totalCartPlace' => isset($totalCartPlace) ? $totalCartPlace : null,
-            'totalPlaced' => isset($totalPlaced) ? $totalPlaced : null
+            'totalPlaced' => isset($totalPlaced) ? $totalPlaced : null,
+            'SupCategorie' => $SupCategorie
         ]);
     }
 

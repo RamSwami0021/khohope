@@ -25,10 +25,12 @@
                                 <div class="col-md-9">
                                     <div class="mb-4">
                                         <label class="form-label">Title</label>
-                                        <input type="text" name="name" value="{{ $menu->name ?? '' }}" placeholder="Type here" class="form-control">
+                                        <input type="text" name="name" value="{{ $menu->name ?? '' }}"
+                                            placeholder="Type here" class="form-control">
                                     </div>
                                     <div class="mb-4">
-                                        <input type="text" value="{{ Auth::user()->id }}" name="user_id" placeholder="Type here" class="form-control" hidden>
+                                        <input type="text" value="{{ Auth::user()->id }}" name="user_id"
+                                            placeholder="Type here" class="form-control" hidden>
                                     </div>
                                     <div class="mb-4">
                                         <label class="form-label">Description</label>
@@ -37,7 +39,9 @@
                                     <div class="mb-4">
                                         <label class="form-label">Status</label>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="status" {{ (isset($menu) && $menu->status === 'on') ? 'checked' : '' }}>
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="flexSwitchCheckChecked" name="status"
+                                                {{ isset($menu) && $menu->status === 'on' ? 'checked' : '' }}>
                                         </div>
                                     </div>
 
@@ -45,7 +49,37 @@
                                         <label class="form-label">Category</label>
                                         <select class="form-select" name="category">
                                             @forelse($list as $item)
-                                                <option value="{{ $item->id }}" {{ (isset($menu) && $menu->categorie_id == $item->id) ? 'selected' : '' }}> {{ $item->name }} </option>
+                                                <option value="{{ $item->id }}"
+                                                    {{ isset($menu) && $menu->categorie_id == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->name }} </option>
+                                            @empty
+                                                <option disabled value="#"> No Category Added </option>
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                    {{-- <div class="mb-4">
+                                        <label class="form-label">Super Category</label>
+                                        <select class="form-select" name="supcategories[]" multiple>
+                                            @forelse($suplist as $item)
+                                                <option value="{{ $item->id }}" {{ (isset($menu) && $menu->supcategorie_id == $item->id) ? 'selected' : '' }}> {{ $item->name }} </option>
+                                            @empty
+                                                <option disabled value="#"> No Category Added </option>
+                                            @endforelse
+                                        </select>
+                                    </div> --}}
+                                    <div class="mb-4">
+                                        <label class="form-label">Super Category</label>
+                                        <select class="form-select" name="supcategories[]" multiple>
+                                            @forelse($suplist as $item)
+                                                @php
+                                                    $selected = false;
+                                                    $menuSupcategories = explode(', ', $menu->supcategorie_id);
+                                                    if (in_array($item->id, $menuSupcategories)) {
+                                                        $selected = true;
+                                                    }
+                                                @endphp
+                                                <option value="{{ $item->id }}" {{ $selected ? 'selected' : '' }}>
+                                                    {{ $item->name }} </option>
                                             @empty
                                                 <option disabled value="#"> No Category Added </option>
                                             @endforelse
@@ -61,7 +95,8 @@
                                 <div class="col-md-9">
                                     <div class="mb-4">
                                         <label class="form-label">Cost in RS</label>
-                                        <input type="text" name="price" value="{{ $menu->price ?? '' }}" placeholder="Rs00.0" class="form-control">
+                                        <input type="text" name="price" value="{{ $menu->price ?? '' }}"
+                                            placeholder="Rs00.0" class="form-control">
                                     </div>
                                 </div> <!-- col.// -->
                             </div> <!-- row.// -->
@@ -73,11 +108,13 @@
                                 <div class="col-md-9">
                                     <div class="mb-4">
                                         <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                            <input class="form-check-input" name="type" value="veg" type="radio" {{ (isset($menu) && $menu->type == 'veg') ? 'checked' : '' }}>
+                                            <input class="form-check-input" name="type" value="veg" type="radio"
+                                                {{ isset($menu) && $menu->type == 'veg' ? 'checked' : '' }}>
                                             <span class="form-check-label"> Veg </span>
                                         </label>
                                         <label class="mb-2 form-check form-check-inline" style="width: 45%;">
-                                            <input class="form-check-input" name="type" value="non-veg" type="radio" {{ (isset($menu) && $menu->type == 'non-veg') ? 'checked' : '' }}>
+                                            <input class="form-check-input" name="type" value="non-veg" type="radio"
+                                                {{ isset($menu) && $menu->type == 'non-veg' ? 'checked' : '' }}>
                                             <span class="form-check-label"> Non Veg </span>
                                         </label>
 
@@ -95,7 +132,8 @@
                                         <input class="form-control" name="image" type="file">
                                     </div>
                                     <div class="mb-4" id="imagePreviewContainer">
-                                        <img width="10%" src="{{asset('public/'.$menu->image_url)}}" class="img-fluid" alt="Image Preview">
+                                        <img width="10%" src="{{ asset($menu->image_url) }}" class="img-fluid"
+                                            alt="Image Preview">
                                     </div>
                                 </div> <!-- col.// -->
 

@@ -26,7 +26,7 @@
                     <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
                         <a class="itemside" href="#">
                             <div class="left">
-                                <img src="{{ asset('public/'.$item->image_url) }}" class="img-sm img-thumbnail" alt="Item">
+                                <img src="{{ asset($item->image_url) }}" class="img-sm img-thumbnail" alt="Item">
                             </div>
                             <div class="info">
                                 <h6 class="mb-0">{{$item->name}}</h6>

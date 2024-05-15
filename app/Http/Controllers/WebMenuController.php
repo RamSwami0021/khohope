@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Menu_Categories;
 use App\Models\Order;
 use App\Models\Menu_Items;
+use App\Models\SupCategorie;
 use Illuminate\Http\Request;
 
 class WebMenuController extends Controller
@@ -14,37 +15,46 @@ class WebMenuController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, $username)
+    public function index(Request $request, $username, $id)
     {
         $isChecked = $request->has('vegOnly') ? 'on' : 'off';
-        // if ($isChecked === 'on') {
-        //     $username = $request->input('username');
-        //     $user = User::where('username', $username)->first();
-        // } else {
-        //     $user = User::where('username', $username)->first();
-        // }
-
-        // $username = $request->input('username');
         $user = User::where('username', $username)->first();
         $categories = Menu_Categories::where('user_id', $user->id)->where('status', 'on')->get();
-
 
 
         if ($isChecked === 'on') {
             foreach ($categories as $category) {
                 $category->menus = Menu_Items::where('categorie_id', $category->id)
-                    ->where('status', 'on')
-                    ->where('type', 'veg')
-                    ->get();
+                ->where('status', 'on')
+                ->where('type', 'veg')
+                ->where(function($query) use ($id) {
+                    $query->where(function($q) use ($id) {
+                        $q->where('supcategorie_id', 'like', '%,'.$id.',%')
+                            ->orWhere('supcategorie_id', 'like', $id.',%')
+                            ->orWhere('supcategorie_id', 'like', '%,'.$id);
+                    })
+                    ->orWhere('supcategorie_id', $id);
+                })
+                ->get();
             }
         } else {
             foreach ($categories as $category) {
-                $category->menus = Menu_Items::where('categorie_id', $category->id)
-                    ->where('status', 'on')
-                    ->get();
+                $category->menus =Menu_Items::where('categorie_id', $category->id)
+                ->where('status', 'on')
+                ->where(function($query) use ($id) {
+                    $query->where(function($q) use ($id) {
+                        $q->where('supcategorie_id', 'like', '%,'.$id.',%')
+                            ->orWhere('supcategorie_id', 'like', $id.',%')
+                            ->orWhere('supcategorie_id', 'like', '%,'.$id);
+                    })
+                    ->orWhere('supcategorie_id', $id);
+                })
+                ->get();
+
             }
         }
-        return view('menu', compact('user', 'categories', 'isChecked'));
+        $SupCategorie = SupCategorie::where('user_id', $user->id)->where('status','on')->get();
+        return view('menu', compact('user', 'categories', 'isChecked', 'id','SupCategorie'));
     }
 
     /**
