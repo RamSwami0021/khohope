@@ -2,7 +2,7 @@
 
 @section('web-content')
     <div class="container-xxl py-5 bg-dark hero-header mb-5">
-        <div class="container text-center my-5 pt-5 pb-4">
+        <div class="container text-center pt-5 pb-4">
             <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
@@ -50,8 +50,8 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 600px;
-            top: 88%;
             left: 30%;
+            top: 88%;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             padding: 12px 16px;
             z-index: 1;
@@ -83,17 +83,18 @@
         .fixedButton {
             position: fixed;
             bottom: 8%;
-            right: 0px;
-            left: 38%;
+            right: 75px;
             padding: 10px;
-            border-radius: 25px;
-            width: 20%;
+            border-radius: 30px;
+            width: 3.3%;
             z-index: 3;
         }
 
         @media only screen and (max-width: 768px) {
             .fixedButton {
-                width: 80%;
+                width: 12%;
+                right: 40px;
+                border-radius: 25px;
                 margin-left: -28%;
             }
         }
@@ -171,7 +172,7 @@
             </div>
             <div class="d-flex justify-content-around wow fadeInUp" data-wow-delay="0.1s" style="padding-bottom: 10px">
                 <div class="icon">
-                    <img width="25px" src="{{ asset('/public/assets/fonts/magnifying-glass-solid.svg') }}" class="img-fluid"
+                    <img width="25px" src="{{ asset('assets/fonts/magnifying-glass-solid.svg') }}" class="img-fluid"
                         alt="">
                     <input type="text" id="searchInput" onclick="toggleDropdown()" placeholder="">
                 </div>
@@ -179,7 +180,7 @@
             <div id="dropdownContent"></div>
             <a class="btn btn-primary fixedButton wow fadeInUp" data-bs-toggle="modal" data-bs-target="#catModal"
                 data-wow-delay="0.1s">
-                Browse Categories
+                <i class="bi bi-book"></i>
             </a>
 
             <div class="modal fade" id="catModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -191,15 +192,17 @@
                         </div>
                         <div class="modal-body">
                             @forelse($categories as $category)
-                                <div class="col-lg-12">
-                                    <div onclick="redirectMenuAndScroll('{{ $category->id }}')"
-                                        style="text-align: start;
+                                @if (!$category->menus->isEmpty())
+                                    <div class="col-lg-12">
+                                        <div onclick="redirectMenuAndScroll('{{ $category->id }}')"
+                                            style="text-align: start;
                                                 padding: 5px;
                                                 margin: 5px;
                                                 background: aliceblue; cursor: pointer;">
-                                        {{ $category->name }}
+                                            {{ $category->name }}
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @empty
                                 <p>No Menu Added</p>
                             @endforelse
