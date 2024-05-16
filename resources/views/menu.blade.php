@@ -51,6 +51,7 @@
             background-color: #f9f9f9;
             min-width: 600px;
             top: 88%;
+            left: 30%;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             padding: 12px 16px;
             z-index: 1;
@@ -63,7 +64,9 @@
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
             #dropdownContent {
                 min-width: 580px;
-                top: 61.5%;
+                /* top: 61.5%; */
+                top: 54.5%;
+                left: 18%;
             }
         }
 
