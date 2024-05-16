@@ -83,27 +83,27 @@
         .fixedButton {
             position: fixed;
             bottom: 8%;
-            right: 75px;
+            right: 100px;
             padding: 10px;
-            border-radius: 30px;
-            width: 3.3%;
+            border-radius: 10px;
+            width:8%;
             z-index: 3;
         }
 
         @media only screen and (max-width: 768px) {
             .fixedButton {
-                width: 12%;
-                right: 40px;
-                border-radius: 25px;
+                width: 24%;
+                right: -5px;
+                border-radius: 10px;
                 margin-left: -28%;
             }
         }
 
         .icon img {
             position: absolute;
-            top: 83%;
+            top: 70.5%;
             transform: translateY(-50%);
-            left: 67.5%;
+            left: 68%;
             color: #aaa;
         }
 
@@ -178,9 +178,9 @@
                 </div>
             </div>
             <div id="dropdownContent"></div>
-            <a class="btn btn-primary fixedButton wow fadeInUp" data-bs-toggle="modal" data-bs-target="#catModal"
+            <a class="btn btn-primary fixedButton wow fadeInUp d-flex justify-content-center ml-auto" data-bs-toggle="modal" data-bs-target="#catModal"
                 data-wow-delay="0.1s">
-                <i class="bi bi-book"></i>
+                <img src="{{asset('public/cutlery.png')}}" alt="" style="width: 40%; padding-right: 10px;"> <h6 style="margin: auto 0;">Menu</h6>
             </a>
 
             <div class="modal fade" id="catModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
