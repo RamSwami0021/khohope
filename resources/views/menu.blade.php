@@ -50,8 +50,8 @@
             position: absolute;
             background-color: #f9f9f9;
             min-width: 600px;
-            left: 30%;
-            top: 88%;
+            left: 28%;
+            top: 75%;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             padding: 12px 16px;
             z-index: 1;
