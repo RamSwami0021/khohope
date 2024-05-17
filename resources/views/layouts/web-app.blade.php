@@ -32,8 +32,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('/public/web-assets/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('sweet-modal/dist/min/jquery.sweet-modal.min.css)}}" />
-    <script src="{{asset('sweet-modal/dist/min/jquery.sweet-modal.min.js)}}"></script>
+<!--     <link rel="stylesheet" href="{{asset('sweet-modal/dist/min/jquery.sweet-modal.min.css)}}" /> -->
+<!--     <script src="{{asset('sweet-modal/dist/min/jquery.sweet-modal.min.js)}}"></script> -->
     <style>
         .fade-carousel .carousel-inner .carousel-item {
             opacity: 0;
