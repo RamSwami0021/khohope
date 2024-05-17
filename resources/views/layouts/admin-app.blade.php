@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="sweet-modal/dist/min/jquery.sweet-modal.min.css" />
     <script src="sweet-modal/dist/min/jquery.sweet-modal.min.js"></script>
     <!-- Favicon -->
-    {{-- <link rel="shortcut icon" type="image/x-icon" href="/public/assets/imgs/theme/favicon.svg"> --}}
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="/assets/imgs/theme/favicon.svg"> --}}
     <!-- Template CSS -->
-    <link href="{{ asset('/public/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
             <a href="{{ asset('restaurants/home') }}" class="brand-wrap">
-                <!-- <img src="/public/assets/imgs/theme/logo.svg" class="logo" alt="Khojo Dashboard"> -->
+                <!-- <img src="/assets/imgs/theme/logo.svg" class="logo" alt="Khojo Dashboard"> -->
                 <h3> {{ Auth::user()->name }}</h3>
             </a>
             <div>
@@ -90,6 +90,22 @@
                     </a>
                 </li>
             </ul>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ asset('/restaurants/about') }}"> <i
+                            class="icon material-icons md-local_offer"></i>
+                        <span class="text"> About </span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="{{ asset('/restaurants/contact') }}"> <i
+                            class="icon material-icons md-local_offer"></i>
+                        <span class="text"> Contact </span>
+                    </a>
+                </li>
+            </ul>
             <br>
             <br>
         </nav>
@@ -109,7 +125,7 @@
                     <li class="dropdown nav-item">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
                             aria-expanded="false"> <img class="img-xs rounded-circle"
-                                src="{{ asset('/public/assets/imgs/people/avatar2.jpg') }}" alt="User"></a>
+                                src="{{ asset('/assets/imgs/people/avatar2.jpg') }}" alt="User"></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
                             <a class="dropdown-item" href="{{ asset('restaurants/profile') }}"><i
                                     class="material-icons md-perm_identity"></i>Edit Profile</a>
@@ -146,15 +162,15 @@
             </div>
         </footer>
     </main>
-    <script src="{{ asset('/public/assets/js/vendors/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('/public/assets/js/vendors/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('/public/assets/js/vendors/select2.min.js') }}"></script>
-    <script src="{{ asset('/public/assets/js/vendors/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('/public/assets/js/vendors/jquery.fullscreen.min.js') }}"></script>
-    <script src="{{ asset('/public/assets/js/vendors/chart.js') }}"></script>
+    <script src="{{ asset('/assets/js/vendors/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/vendors/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/vendors/select2.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/vendors/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('/assets/js/vendors/jquery.fullscreen.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/vendors/chart.js') }}"></script>
     <!-- Main Script -->
-    <script src="{{ asset('/public/assets/js/main.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/public/assets/js/custom-chart.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/assets/js/main.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/assets/js/custom-chart.js') }}" type="text/javascript"></script>
     {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

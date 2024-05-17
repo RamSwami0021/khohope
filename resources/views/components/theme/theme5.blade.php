@@ -36,12 +36,12 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-heading{{ $category->id }}">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false"
+                                        data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="true"
                                         aria-controls="flush-collapse{{ $category->id }}">
                                         {{ $category->name }}
                                     </button>
                                 </h2>
-                                <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse "
+                                <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse show"
                                     aria-labelledby="flush-heading{{ $category->id }}"
                                     data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
@@ -54,10 +54,10 @@
                                                     <h5 class="d-flex justify-content-between" style="margin: auto 0">
                                                         <span>{{ $menu->name }}</span>
                                                         @if ($menu->type == 'veg')
-                                                            <img width="10%" src="{{ asset('public/veg.png') }}"
+                                                            <img width="10%" src="{{ asset('/veg.png') }}"
                                                                 alt="hi">
                                                         @else
-                                                            <img width="10%" src="{{ asset('public/nonveg.png') }}"
+                                                            <img width="10%" src="{{ asset('/nonveg.png') }}"
                                                                 alt="">
                                                         @endif
                                                     </h5>

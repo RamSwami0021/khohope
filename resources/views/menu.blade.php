@@ -86,7 +86,7 @@
             right: 100px;
             padding: 10px;
             border-radius: 10px;
-            width:8%;
+            width: 8%;
             z-index: 3;
         }
 
@@ -178,37 +178,75 @@
                 </div>
             </div>
             <div id="dropdownContent"></div>
-            <a class="btn btn-primary fixedButton wow fadeInUp d-flex justify-content-center ml-auto" data-bs-toggle="modal" data-bs-target="#catModal"
-                data-wow-delay="0.1s">
-                <img src="{{asset('public/cutlery.png')}}" alt="" style="width: 40%; padding-right: 10px;"> <h6 style="margin: auto 0;">Menu</h6>
+            <a class="btn btn-primary fixedButton wow fadeInUp d-flex justify-content-center ml-auto" data-bs-toggle="modal"
+                data-bs-target="#catModal" data-wow-delay="0.1s">
+                <img src="{{ asset('cutlery.png') }}" alt="" style="width: 40%; padding-right: 10px;">
+                <h6 style="margin: auto 0;">Menu</h6>
             </a>
+
+            <style>
+                .modal {
+                    position: relative;
+                    animation: dMLXAX 250ms ease-out 0s 1 normal none running;
+                    background-color: transparent;
+                }
+
+                .modal-content {
+                    background-color: #0F172B;
+                    color: #FEA116;
+                    border-radius: 25px;
+                    padding: 10px 20px;
+                    max-height: 372px;
+                    width: 128%;
+                    left: -12%;
+                    text-align: center;
+                    border-radius: 20px;
+                    overflow: auto;
+                    background: rgb(2, 6, 12);
+                    backface-visibility: hidden;
+                    transform: translateZ(0px);
+                    will-change: transform, opacity;
+                    transform-origin: center bottom;
+                    opacity: 1;
+                }
+
+                @media only screen and (max-width: 768px) {
+                    .modal-content {
+                    width: 100%;
+                    left: 0%; }
+                }
+                @keyframes dMLXAX {
+                    0% {
+                        transform: scale(0);
+                    }
+
+                    100% {
+                        transform: scale(1);
+                    }
+                }
+            </style>
 
             <div class="modal fade" id="catModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Browser Category</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
                         <div class="modal-body">
                             @forelse($categories as $category)
                                 @if (!$category->menus->isEmpty())
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 d-flex"
+                                        style="justify-content:space-between; align-items: baseline;">
                                         <div onclick="redirectMenuAndScroll('{{ $category->id }}')"
                                             style="text-align: start;
                                                 padding: 5px;
                                                 margin: 5px;
-                                                background: aliceblue; cursor: pointer;">
+                                                cursor: pointer;">
                                             {{ $category->name }}
                                         </div>
+                                        <div>+</div>
                                     </div>
                                 @endif
                             @empty
                                 <p>No Menu Added</p>
                             @endforelse
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -225,8 +263,6 @@
                             <label class="form-check-label" for="flexSwitchCheckDefault">Veg Only</label>
                         </div>
                     </form>
-
-
                 </div>
             </div>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

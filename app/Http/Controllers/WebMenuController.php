@@ -54,6 +54,7 @@ class WebMenuController extends Controller
             }
         }
         $SupCategorie = SupCategorie::where('user_id', $user->id)->where('status','on')->get();
+        // dd($categories);
         return view('menu', compact('user', 'categories', 'isChecked', 'id','SupCategorie'));
     }
 

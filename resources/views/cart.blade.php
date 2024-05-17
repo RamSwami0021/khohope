@@ -24,7 +24,7 @@ justify-content: space-between;
 }
 </style>
     <div class="container-xxl py-5 bg-dark hero-header mb-5">
-        <div class="container text-center my-5 pt-5 pb-4">
+        <div class="container text-center pt-5 pb-4">
             <h1 class="display-3 text-white mb-3 animated slideInDown">Food Cart</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
@@ -67,7 +67,7 @@ justify-content: space-between;
                                                                 <div
                                                                     class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                                                        <img src="{{ asset('public/'.$order->menu->image_url) }}"
+                                                                        <img src="{{ asset('/'.$order->menu->image_url) }}"
                                                                             class="img-fluid rounded-3" width="50%"
                                                                             alt="food">
                                                                     </div>
@@ -276,7 +276,7 @@ justify-content: space-between;
                                                                 <div
                                                                     class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                                                        <img src="{{ asset('public/'.$order->menu->image_url) }}"
+                                                                        <img src="{{ asset('/'.$order->menu->image_url) }}"
                                                                             class="img-fluid rounded-3" width="50%"
                                                                             alt="food">
                                                                     </div>

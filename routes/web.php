@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -46,13 +48,13 @@ Route::get('/admin/register', function () {
     return view('auth/register');
 });
 
-Route::get('/{username?}', function ($username = null) {
+Route::get('/{username}', function ($username = null) {
     if ($username === null) {
         return view('welcome');
     } else {
         $user = User::where('username', $username)->first();
         $SupCategorie = SupCategorie::where('user_id', $user->id)->where('status','on')->get();
-        return view('welcome', compact('user','SupCategorie'));
+        return view('welcome', compact('user','SupCategorie',));
     }
 });
 
@@ -68,13 +70,8 @@ Route::post('/placeOrder', [CartController::class, 'placeOrder'])->name('placeOr
 Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 Route::post('/updateQuantity', [CartController::class, 'updateOrder'])->name('updateQuantity');
 
-Route::get('/contact/data', function () {
-    return view('contact');
-});
-
-Route::get('/about/data', function () {
-    return view('about');
-});
+Route::get('/contact/{username}', [ContactController::class, 'index'])->name('contact');
+Route::get('/about/{username}', [AboutController::class, 'index'])->name('about');
 
 
 
@@ -140,6 +137,11 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/restaurants/profile', [ProfileController::class, 'index'])->name('restaurants.profile');
     Route::post('/restaurants/profile', [ProfileController::class, 'store'])->name('restaurants.profile');
+
+    Route::get('/restaurants/about', [AboutController::class, 'about'])->name('restaurants.about');
+    Route::post('/restaurants/about', [AboutController::class, 'store'])->name('restaurants.about');
+    Route::get('/restaurants/contact', [ContactController::class, 'contact'])->name('restaurants.contact');
+    Route::post('/restaurants/contact', [ContactController::class, 'store'])->name('restaurants.contact');
 
     // Route::get('/storePrepraing/{order_id}', [HomeController::class, 'storePrepraing'])->name('manager.home');
     // Route::get('/storeServe/{order_id}', [HomeController::class, 'storeServe'])->name('manager.home');
