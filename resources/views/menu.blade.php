@@ -180,7 +180,7 @@
             <div id="dropdownContent"></div>
             <a class="btn btn-primary fixedButton wow fadeInUp d-flex justify-content-center ml-auto" data-bs-toggle="modal"
                 data-bs-target="#catModal" data-wow-delay="0.1s">
-                <img src="{{ asset('cutlery.png') }}" alt="" style="width: 40%; padding-right: 10px;">
+                <img src="{{ asset('public/cutlery.png') }}" alt="" style="width: 40%; padding-right: 10px;">
                 <h6 style="margin: auto 0;">Menu</h6>
             </a>
 
