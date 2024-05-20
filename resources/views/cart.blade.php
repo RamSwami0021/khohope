@@ -81,7 +81,7 @@
                                                                 <div
                                                                     class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                                                        <img src="{{ asset('/' . $order->menu->image_url) }}"
+                                                                        <img src="{{ asset('/public/' . $order->menu->image_url) }}"
                                                                             class="img-fluid rounded-3" width="50%"
                                                                             alt="food">
                                                                     </div>
@@ -296,7 +296,7 @@
                                                                 <div
                                                                     class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                                                        <img src="{{ asset('/' . $order->menu->image_url) }}"
+                                                                        <img src="{{ asset('/public/' . $order->menu->image_url) }}"
                                                                             class="img-fluid rounded-3" width="50%"
                                                                             alt="food">
                                                                     </div>
