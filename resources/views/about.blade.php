@@ -19,9 +19,9 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-12">
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
+                <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>{{$user->name ?? 'Khojo'}}</h1>
                 <p class="mb-4">{{$data->description??''}}</p>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Contact Us</a>
+                <a class="btn btn-primary py-3 px-5 mt-2" href="{{ url('/contact/' . $user->username) }}">Contact Us</a>
             </div>
         </div>
     </div>

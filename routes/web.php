@@ -74,6 +74,10 @@ Route::get('/contact/{username}', [ContactController::class, 'index'])->name('co
 Route::get('/about/{username}', [AboutController::class, 'index'])->name('about');
 
 
+Route::fallback(function () {
+    return view('error');
+});
+
 
 Auth::routes();
 
@@ -153,6 +157,9 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     // Route::delete('/menudestroy/{id}', [HomeController::class, 'menudestroy'])->name('restaurant.menudestroy');
     // Route::delete('/catdestroy/{id}', [HomeController::class, 'catdestroy'])->name('restaurant.catdestroy');
 
+    Route::fallback(function () {
+        return view('error');
+    });
 });
 
 

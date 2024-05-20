@@ -2,28 +2,42 @@
 
 @section('web-content')
 
-<style>
-.placeorder{
-    display:flex;
-justify-content: space-between;
-}
-@media only screen and (max-width: 768px) {
-    .minus-btn{
-        padding-left: 8% !important;
-    }
-    .status{
-        padding-top:4px;
-    }
-    .placeorder{
-        display:block;
-    }
-    button{
-        margin-bottom: 15px;
-    }
+    <style>
+        .placeorder {
+            display: flex;
+            justify-content: space-between;
+        }
 
-}
-</style>
-    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        .py {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .minus-btn {
+                padding-left: 8% !important;
+            }
+
+            .status {
+                padding-top: 4px;
+            }
+
+            .placeorder {
+                display: block;
+            }
+
+            button {
+                margin-bottom: 15px;
+            }
+
+            .py {
+                padding-top: 0rem !important;
+                padding-bottom: 0rem !important;
+            }
+
+        }
+    </style>
+    <div class="container-xxl py bg-dark hero-header mb-5">
         <div class="container text-center pt-5 pb-4">
             <h1 class="display-3 text-white mb-3 animated slideInDown">Food Cart</h1>
             <nav aria-label="breadcrumb">
@@ -67,7 +81,7 @@ justify-content: space-between;
                                                                 <div
                                                                     class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                                                        <img src="{{ asset('/public/'.$order->menu->image_url) }}"
+                                                                        <img src="{{ asset('/' . $order->menu->image_url) }}"
                                                                             class="img-fluid rounded-3" width="50%"
                                                                             alt="food">
                                                                     </div>
@@ -106,50 +120,57 @@ justify-content: space-between;
                                                                 </div> --}}
                                                                     <div class="col-md-3 col-lg-3 col-xl-3">
                                                                         <p><span class="text-muted">Quantity: </span>
-                                                                            <div class="d-flex quantity-box">
-                                                                                <button class="btn btn-link px-2" onclick="event.preventDefault(); changeQuantity({{ $order->id }}, -1)">
-                                                                                    <i class="fas fa-minus"></i>
-                                                                                </button>
-                                                                                <input id="quantityInput{{ $order->id }}" min="1" placeholder="1" value="{{$order->quantity}}" name="quantity" type="number" class="form-control form-control-sm quantity" style="width: 25%; height:10%" disabled>
-                                                                                <button class="btn btn-link px-2" onclick="event.preventDefault(); changeQuantity({{ $order->id }}, 1)">
-                                                                                    <i class="fas fa-plus"></i>
-                                                                                </button>
-                                                                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                                                                                <script>
-                                                                                    function changeQuantity(orderId, step) {
-                                                                                        const quantityInput = document.getElementById('quantityInput' + orderId);
-                                                                                        let quantity = parseInt(quantityInput.value) || 1;
-                                                                                        quantity += step;
-                                                                                        if (quantity < 0) {
-                                                                                            quantity = 0;
-                                                                                        }
-                                                                                        quantityInput.value = quantity;
-                                                                                        updateQuantity(orderId, quantity);
+                                                                        <div class="d-flex quantity-box">
+                                                                            <button class="btn btn-link px-2"
+                                                                                onclick="event.preventDefault(); changeQuantity({{ $order->id }}, -1)">
+                                                                                <i class="fas fa-minus"></i>
+                                                                            </button>
+                                                                            <input id="quantityInput{{ $order->id }}"
+                                                                                min="1" placeholder="1"
+                                                                                value="{{ $order->quantity }}"
+                                                                                name="quantity" type="number"
+                                                                                class="form-control form-control-sm quantity"
+                                                                                style="width: 25%; height:10%" disabled>
+                                                                            <button class="btn btn-link px-2"
+                                                                                onclick="event.preventDefault(); changeQuantity({{ $order->id }}, 1)">
+                                                                                <i class="fas fa-plus"></i>
+                                                                            </button>
+                                                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                                                                            <script>
+                                                                                function changeQuantity(orderId, step) {
+                                                                                    const quantityInput = document.getElementById('quantityInput' + orderId);
+                                                                                    let quantity = parseInt(quantityInput.value) || 1;
+                                                                                    quantity += step;
+                                                                                    if (quantity < 0) {
+                                                                                        quantity = 0;
                                                                                     }
+                                                                                    quantityInput.value = quantity;
+                                                                                    updateQuantity(orderId, quantity);
+                                                                                }
 
-                                                                                    function updateQuantity(orderId, newQuantity) {
-                                                                                        console.log(newQuantity);
-                                                                                        $.ajax({
-                                                                                            url: "{{ route('updateQuantity') }}",
-                                                                                            type: "POST",
-                                                                                            data: {
-                                                                                                _token: "{{ csrf_token() }}",
-                                                                                                orderId: orderId,
-                                                                                                quantity: newQuantity
-                                                                                            },
-                                                                                            success: function(response) {
-                                                                                                if (response.success) {
-                                                                                                    console.log("Quantity updated successfully.");
-                                                                                                } else {
-                                                                                                    console.error(response.message);
-                                                                                                }
+                                                                                function updateQuantity(orderId, newQuantity) {
+                                                                                    console.log(newQuantity);
+                                                                                    $.ajax({
+                                                                                        url: "{{ route('updateQuantity') }}",
+                                                                                        type: "POST",
+                                                                                        data: {
+                                                                                            _token: "{{ csrf_token() }}",
+                                                                                            orderId: orderId,
+                                                                                            quantity: newQuantity
+                                                                                        },
+                                                                                        success: function(response) {
+                                                                                            if (response.success) {
+                                                                                                console.log("Quantity updated successfully.");
+                                                                                            } else {
+                                                                                                console.error(response.message);
                                                                                             }
-                                                                                        });
-                                                                                    }
-                                                                                </script>
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                            </script>
 
 
-                                                                            </div>
+                                                                        </div>
                                                                         </p>
                                                                     </div>
 
@@ -232,8 +253,7 @@ justify-content: space-between;
                                                         <p>your cart is empty</p>
                                                     @endforelse
                                                     <div class="card">
-                                                        <div
-                                                            class="card-body placeorder align-items-center">
+                                                        <div class="card-body placeorder align-items-center">
                                                             <form action="{{ route('placeOrder') }}" method="POST">
                                                                 @csrf
                                                                 <input type="text" name="customer"
@@ -276,7 +296,7 @@ justify-content: space-between;
                                                                 <div
                                                                     class="row d-flex justify-content-between align-items-center">
                                                                     <div class="col-md-2 col-lg-2 col-xl-2">
-                                                                        <img src="{{ asset('/public/'.$order->menu->image_url) }}"
+                                                                        <img src="{{ asset('/' . $order->menu->image_url) }}"
                                                                             class="img-fluid rounded-3" width="50%"
                                                                             alt="food">
                                                                     </div>

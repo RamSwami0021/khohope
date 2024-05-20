@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    {{-- <link href="asset{{('img/favicon.ico)}}" rel="icon"> --}}
+    {{-- <link href="img/favicon.ico" rel="icon"> --}}
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,17 +23,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('/public/web-assets/lib/animate/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/public/web-assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/public/web-assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/web-assets/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('/public/web-assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web-assets/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{ asset('/public/web-assets/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('sweet-modal/dist/min/jquery.sweet-modal.min.css')}}" />
-    <script src="{{asset('sweet-modal/dist/min/jquery.sweet-modal.min.js')}}"></script>
+    <link href="{{ asset('/web-assets/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="sweet-modal/dist/min/jquery.sweet-modal.min.css" />
+    <script src="sweet-modal/dist/min/jquery.sweet-modal.min.js"></script>
     <style>
         .fade-carousel .carousel-inner .carousel-item {
             opacity: 0;
@@ -62,6 +62,16 @@
         .fade-carousel .carousel-control-next {
             z-index: 10;
         }
+
+        .ml {
+            margin-left: 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .ml {
+                margin-left: 0px;
+            }
+        }
     </style>
 </head>
 
@@ -88,7 +98,7 @@
 
                     </div>
                     <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        <a class="btn btn-primary py-2 dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Menu
                         </a>
@@ -108,10 +118,12 @@
                         </ul>
                     </div>
 
-                    @if (session('customer'))
-                        <a href="{{ asset('cart/' . ($user->username ?? '#')) }}" class="btn btn-primary py-2 px-4"
-                            style="margin-left: 10px">Cart</a>
-                    @endif
+                    <div class="py-4 ml">
+                        @if (session('customer'))
+                            <a href="{{ asset('cart/' . ($user->username ?? '#')) }}"
+                                class="btn btn-primary py-2 px-4">Cart</a>
+                        @endif
+                    </div>
 
                 </div>
             </nav>
@@ -126,9 +138,8 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-12 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Khojo Right Now </a>, All Rights Reserved.
-                            Designed By <a class="border-bottom" href="#">Ram</a><br><br>
-                            Developed By <a class="border-bottom" href="https://khojorightnow.com" target="_blank">Khojo
+                            &copy; All Rights Reserved.
+                            Designed & Developed By <a class="border-bottom" href="https://khojorightnow.com" target="_blank">Khojo
                                 Right Now</a>
                         </div>
                     </div>
@@ -145,17 +156,17 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('/public/web-assets/lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/counterup/counterup.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/tempusdominus/js/moment.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
-    <script src="{{ asset('/public/web-assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ asset('/web-assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset('/public/web-assets/js/main.js') }}"></script>
+    <script src="{{ asset('/web-assets/js/main.js') }}"></script>
 
     {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

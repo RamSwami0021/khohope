@@ -23,34 +23,52 @@
             <div class="row g-4">
                 <div class="col-12">
                     <div class="row gy-4">
-                        @if(isset($data->email))
-                        <div class="col-md-4">
-                            <h5 class="section-title ff-secondary fw-normal text-start text-primary">Email</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i>{{ $data->email }}</p>
-                        </div>
+                        @if (isset($data->email))
+                            <div class="col-md-4">
+                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">Email</h5>
+                                @foreach (explode(',', $data->email) as $email)
+                                    <p>
+                                        <i class="fa fa-envelope-open text-primary me-2"></i>
+                                        <a href="mailto:{{ trim($email) }}">{{ trim($email) }}</a>
+                                    </p>
+                                @endforeach
+
+                            </div>
                         @endif
 
-                        @if(isset($data->phone))
-                        <div class="col-md-4">
-                            <h5 class="section-title ff-secondary fw-normal text-start text-primary">Phone</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i>{{ $data->phone }}</p>
-                        </div>
+                        @if (isset($data->phone))
+                            <div class="col-md-4">
+                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">Phone</h5>
+                                @foreach (explode(',', $data->phone) as $phoneNumber)
+                                    <p>
+                                        <i class="fa fa-phone text-primary me-2"></i>
+                                        <a href="tel:{{ trim($phoneNumber) }}">{{ trim($phoneNumber) }}</a>
+                                    </p>
+                                @endforeach
+
+
+                            </div>
                         @endif
 
-                        @if(isset($data->website))
-                        <div class="col-md-4">
-                            <h5 class="section-title ff-secondary fw-normal text-start text-primary">Website</h5>
-                            <p><i class="fa fa-envelope-open text-primary me-2"></i>{{ $data->website }}</p>
-                        </div>
+                        @if (isset($data->website))
+                            <div class="col-md-4">
+                                <h5 class="section-title ff-secondary fw-normal text-start text-primary">Website</h5>
+                                <p>
+                                    <i class="fa fa-globe text-primary me-2"></i>
+                                    <a href="{{ $data->website }}" target="_blank">{{ $data->website }}</a>
+                                </p>
+
+                            </div>
                         @endif
                     </div>
 
                 </div>
-                @if(isset($data->website))
-                <div class="col-md-12 wow fadeIn" data-wow-delay="0.1s">
-                    <iframe class="position-relative rounded w-100 h-100" src="{{ $data->map ?? '' }}" frameborder="0"
-                        style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                </div>
+                @if (isset($data->website))
+                    <div class="col-md-12 wow fadeIn" data-wow-delay="0.1s">
+                        <iframe class="position-relative rounded w-100 h-100" src="{{ $data->map ?? '' }}" frameborder="0"
+                            style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                    </div>
                 @endif
             </div>
         </div>

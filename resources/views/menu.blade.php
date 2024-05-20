@@ -1,7 +1,7 @@
 @extends('layouts.web-app')
 
 @section('web-content')
-    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+    <div class="container-xxl py bg-dark hero-header mb-5">
         <div class="container text-center pt-5 pb-4">
             <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
             <nav aria-label="breadcrumb">
@@ -111,6 +111,10 @@
         input::placeholder {
             color: #FEA116
         }
+        .py {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
 
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
             .icon img {
@@ -129,6 +133,11 @@
                 transform: translateY(-50%);
                 left: 97%;
                 color: #aaa;
+            }
+
+            .py {
+                padding-top: 0rem !important;
+                padding-bottom: 0rem !important;
             }
         }
 
@@ -180,13 +189,13 @@
             <div id="dropdownContent"></div>
             <a class="btn btn-primary fixedButton wow fadeInUp d-flex justify-content-center ml-auto" data-bs-toggle="modal"
                 data-bs-target="#catModal" data-wow-delay="0.1s">
-                <img src="{{ asset('public/cutlery.png') }}" alt="" style="width: 40%; padding-right: 10px;">
+                <img src="{{ asset('cutlery.png') }}" alt="" style="width: 40%; padding-right: 10px;">
                 <h6 style="margin: auto 0;">Menu</h6>
             </a>
 
             <style>
                 .modal {
-                    position: relative;
+                    top: 40%;
                     animation: dMLXAX 250ms ease-out 0s 1 normal none running;
                     background-color: transparent;
                 }
@@ -211,10 +220,16 @@
                 }
 
                 @media only screen and (max-width: 768px) {
+                    .modal {
+                        top: 40%;
+                    }
+
                     .modal-content {
-                    width: 100%;
-                    left: 0%; }
+                        width: 100%;
+                        left: 0%;
+                    }
                 }
+
                 @keyframes dMLXAX {
                     0% {
                         transform: scale(0);
@@ -232,9 +247,9 @@
                         <div class="modal-body">
                             @forelse($categories as $category)
                                 @if (!$category->menus->isEmpty())
-                                    <div class="col-lg-12 d-flex"
-                                        style="justify-content:space-between; align-items: baseline;">
-                                        <div onclick="redirectMenuAndScroll('{{ $category->id }}')"
+                                    <div class="col-lg-12 d-flex" onclick="redirectMenuAndScroll('{{ $category->id }}')"
+                                        style="justify-content:space-between; align-items: baseline; cursor: pointer;">
+                                        <div
                                             style="text-align: start;
                                                 padding: 5px;
                                                 margin: 5px;

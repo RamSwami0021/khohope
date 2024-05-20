@@ -24,13 +24,10 @@
                     <div id="carouselExample" class="carousel slide fade-carousel" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{ asset('/public/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
+                                <img src="{{ asset('pizza.png') }}" class="d-block w-100" alt="Hero Image">
                             </div>
                             <div class="carousel-item ">
-                                <img src="{{ asset('/public/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
-                            </div>
-                            <div class="carousel-item ">
-                                <img src="{{ asset('/public/web-assets/img/hero.png') }}" class="d-block w-100" alt="Hero Image">
+                                <img src="{{ asset('pizza2.png') }}" class="d-block w-100" alt="Hero Image">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
